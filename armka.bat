@@ -1,0 +1,1 @@
+start /MIN /D Z:\kiss\delphi_kiss\ ARMka_PROG.exe single hide
