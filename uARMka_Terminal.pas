@@ -358,7 +358,7 @@ begin
                     or (cardinal(file_rx_info[2]) shl 16)
                     or (cardinal(file_rx_info[3]) shl 24);
 
-       if (file_rx_size <= 0) or (file_rx_size > 100000000) then
+       if (file_rx_size <= 0) or (file_rx_size > 1000000000) then
         begin
          file_rx_reset;
          file_rx_process(data, size, nd, ns);

@@ -59,5 +59,13 @@ __history/
 __recovery/
 *.~*
 
+
+log_files/
+raw_log.dat
 # Castalia statistics file (since XE7 Castalia is distributed with Delphi)
 *.stat
+
+ARMkaPROG.log
+ARMkaTerminal.log
+cmd.log
+dev.log
