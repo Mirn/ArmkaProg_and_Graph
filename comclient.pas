@@ -280,7 +280,7 @@ var
  old_mode : integer;
 begin
  result := false;
- if data_size>100000000 then exit;
+ if data_size>1000000000 then exit;
 
  GetLastError;
  old_mode := filemode;
