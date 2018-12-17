@@ -1778,7 +1778,7 @@ begin
    sleep(100);
   end;
 
- PurgeComm(handle, PURGE_TXABORT or PURGE_RXABORT or PURGE_TXCLEAR or PURGE_RXCLEAR);
+ //PurgeComm(handle, PURGE_TXABORT or PURGE_RXABORT or PURGE_TXCLEAR or PURGE_RXCLEAR);
  FileClose(handle);
  handle:=$FFFFFFFF;
 

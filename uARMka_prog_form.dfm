@@ -552,19 +552,22 @@ object ARMka_prog_form: TARMka_prog_form
     Font.Name = 'Courier New'
     Font.Style = [fsBold]
     ItemHeight = 17
-    ItemIndex = 9
     ParentFont = False
     ParentShowHint = False
     ShowHint = True
     TabOrder = 2
-    Text = '115200'
     Items.Strings = (
+      '3000000'
+      '2000000'
+      '1500000'
+      '1200000'
+      '1000000'
       '921600'
       '576000'
       '500000'
       '460800'
       '256000'
-      '250000 '
+      '250000'
       '230400'
       '153600'
       '128000'

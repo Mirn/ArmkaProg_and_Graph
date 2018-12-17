@@ -473,20 +473,23 @@ object ARMka_Terminal: TARMka_Terminal
     Font.Name = 'Courier New'
     Font.Style = [fsBold]
     ItemHeight = 17
-    ItemIndex = 8
     ParentFont = False
     ParentShowHint = False
     ShowHint = True
     TabOrder = 2
-    Text = '128000'
     OnChange = SpeedComboBoxChange
     Items.Strings = (
+      '3000000'
+      '2000000'
+      '1500000'
+      '1200000'
+      '1000000'
       '921600'
       '576000'
       '500000'
       '460800'
       '256000'
-      '250000 '
+      '250000'
       '230400'
       '153600'
       '128000'
@@ -888,6 +891,25 @@ object ARMka_Terminal: TARMka_Terminal
     ShowHint = True
     TabOrder = 23
     OnClick = DTRCheckBoxClick
+  end
+  object t13incCheckBox: TCheckBox
+    Left = 288
+    Top = 473
+    Width = 241
+    Height = 17
+    Hint = 'Request to send'
+    Anchors = [akRight, akBottom]
+    Caption = 't13inc'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Courier New'
+    Font.Style = [fsBold]
+    ParentFont = False
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 24
+    OnClick = t13incCheckBoxClick
   end
   object SecondTimer: TTimer
     OnTimer = SecondTimerTimer

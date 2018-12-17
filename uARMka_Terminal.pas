@@ -53,6 +53,7 @@ type
     GraphButton: TButton;
     DemoCheckBox: TCheckBox;
     FileOpenCheckBox: TCheckBox;
+    t13incCheckBox: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure SecondTimerTimer(Sender: TObject);
     procedure ms100TimerTimer(Sender: TObject);
@@ -76,6 +77,7 @@ type
     procedure SmoothCheckBoxClick(Sender: TObject);
     procedure DTRCheckBoxClick(Sender: TObject);
     procedure GraphButtonClick(Sender: TObject);
+    procedure t13incCheckBoxClick(Sender: TObject);
   private
    macros_old_index : integer;
    viewer : tlog_viewer;
@@ -118,6 +120,10 @@ type
    file_rx_size : cardinal;
    file_rx_info : array [0..127] of byte;
    file_rx_data : array of byte;
+
+   t13inc_last : byte;
+   t13inc_norm : int64;
+   t13inc_err  : int64;
 
    procedure data_add(data:pbyte; size:integer);
    procedure data_add_string(s:string);
@@ -319,6 +325,16 @@ begin
   begin
    while (size > 0) do
     begin
+     if byte(t13inc_last + 13) = data^ then
+      begin
+      inc(t13inc_norm);
+      if (t13inc_norm = 1) and (t13inc_err = 1) then
+       t13inc_err := 0;
+      end
+     else
+      inc(t13inc_err);
+     t13inc_last := data^;
+
      file_rx_sign := (file_rx_sign shl 8) or data^;
      nd^ := data^;
      inc(nd);
@@ -559,6 +575,12 @@ begin
    StatusLabel.Enabled := False;
    StatusLabel.Caption := 'Disconnected';
   end;
+
+ if (t13incCheckBox.Checked) then
+  t13incCheckBox.caption := 'E:' + inttostr(t13inc_err) + ' N:' + inttostr(t13inc_norm)
+ else
+  t13incCheckBox.caption := 't13inc';
+
  stat_readed := 0;
 end;
 
@@ -1220,6 +1242,13 @@ begin
  graph_fifo.write_string(str);
  str := str + #13;
  device.rx_fifo.write_str(str);
+end;
+
+procedure TARMka_Terminal.t13incCheckBoxClick(Sender: TObject);
+begin
+ t13inc_last := 0;
+ t13inc_norm := 0;
+ t13inc_err := 0;
 end;
 
 end.
