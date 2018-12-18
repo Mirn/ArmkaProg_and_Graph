@@ -577,9 +577,7 @@ begin
   end;
 
  if (t13incCheckBox.Checked) then
-  t13incCheckBox.caption := 'E:' + inttostr(t13inc_err) + ' N:' + inttostr(t13inc_norm)
- else
-  t13incCheckBox.caption := 't13inc';
+  t13incCheckBox.caption := 'E:' + inttostr(t13inc_err) + ' N:' + inttostr(t13inc_norm);
 
  stat_readed := 0;
 end;

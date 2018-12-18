@@ -540,9 +540,9 @@ object ARMka_prog_form: TARMka_prog_form
     OnClick = LogButtonClick
   end
   object SpeedComboBox: TComboBox
-    Left = 400
+    Left = 392
     Top = 24
-    Width = 131
+    Width = 139
     Height = 25
     Style = csDropDownList
     Anchors = [akTop, akRight]
@@ -815,9 +815,9 @@ object ARMka_prog_form: TARMka_prog_form
     OnClick = ResetButtonClick
   end
   object TerminalButton: TButton
-    Left = 400
+    Left = 392
     Top = 56
-    Width = 129
+    Width = 137
     Height = 25
     Anchors = [akTop, akRight]
     Caption = 'Terminal'
@@ -833,7 +833,7 @@ object ARMka_prog_form: TARMka_prog_form
     OnClick = TerminalButtonClick
   end
   object AutoTermCheckBox: TCheckBox
-    Left = 400
+    Left = 392
     Top = 82
     Width = 137
     Height = 17

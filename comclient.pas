@@ -948,15 +948,16 @@ begin
    sleep(1);
   end;
 
- PurgeComm(handle, PURGE_TXABORT);
- PurgeComm(handle, PURGE_RXABORT);
- PurgeComm(handle, PURGE_TXCLEAR);
- PurgeComm(handle, PURGE_RXCLEAR);
- sleep(16);
- PurgeComm(handle, PURGE_TXABORT);
- PurgeComm(handle, PURGE_RXABORT);
- PurgeComm(handle, PURGE_TXCLEAR);
- PurgeComm(handle, PURGE_RXCLEAR);
+  com_read_data(nil, 1000, nil, 10);
+// PurgeComm(handle, PURGE_TXABORT);
+// PurgeComm(handle, PURGE_RXABORT);
+// PurgeComm(handle, PURGE_TXCLEAR);
+// PurgeComm(handle, PURGE_RXCLEAR);
+// sleep(16);
+// PurgeComm(handle, PURGE_TXABORT);
+// PurgeComm(handle, PURGE_RXABORT);
+// PurgeComm(handle, PURGE_TXCLEAR);
+// PurgeComm(handle, PURGE_RXCLEAR);
 end;
 
 function tCOMClient.activate_armka:boolean;
@@ -1622,11 +1623,11 @@ go_activate:
 
  if task_open_with_reset then
   begin
-   PurgeComm(handle, PURGE_RXCLEAR);
-   PurgeComm(handle, PURGE_RXABORT);
+//   PurgeComm(handle, PURGE_RXCLEAR);
+//   PurgeComm(handle, PURGE_RXABORT);
    com_read_data(nil, 1000, nil, 10);
-   PurgeComm(handle, PURGE_RXABORT);
-   PurgeComm(handle, PURGE_RXCLEAR);
+//   PurgeComm(handle, PURGE_RXABORT);
+//   PurgeComm(handle, PURGE_RXCLEAR);
   end;
 
  zero_close:=false;
@@ -3058,7 +3059,7 @@ begin
  if not open_simple_fast then DTR := dtr_clear;
  if not open_simple_fast then RTS := rts_clear;
 
- PurgeComm(handle, PURGE_TXABORT or PURGE_RXABORT or PURGE_TXCLEAR or PURGE_RXCLEAR);
+ //PurgeComm(handle, PURGE_TXABORT or PURGE_RXABORT or PURGE_TXCLEAR or PURGE_RXCLEAR);
 
  if not open_simple_fast then
   GetCommTimeouts(handle, CommTimeouts);
@@ -3076,7 +3077,7 @@ begin
    sleep(16);
    DTR := dtr_clear;
    RTS := rts_clear;
-   PurgeComm(handle, PURGE_TXABORT or PURGE_RXABORT or PURGE_TXCLEAR or PURGE_RXCLEAR);
+   //PurgeComm(handle, PURGE_TXABORT or PURGE_RXABORT or PURGE_TXCLEAR or PURGE_RXCLEAR);
    DTR := dtr_clear;
    RTS := rts_clear;
   end;

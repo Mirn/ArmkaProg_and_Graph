@@ -460,9 +460,9 @@ object ARMka_Terminal: TARMka_Terminal
     OnKeyUp = SendEditKeyUp
   end
   object SpeedComboBox: TComboBox
-    Left = 137
+    Left = 136
     Top = 444
-    Width = 80
+    Width = 97
     Height = 25
     AutoDropDown = True
     Style = csDropDownList
@@ -695,7 +695,7 @@ object ARMka_Terminal: TARMka_Terminal
     OnClick = F10RadioButtonClick
   end
   object EvenComboBox: TComboBox
-    Left = 225
+    Left = 241
     Top = 444
     Width = 56
     Height = 25
@@ -724,7 +724,7 @@ object ARMka_Terminal: TARMka_Terminal
       '=0')
   end
   object SendFileButton: TButton
-    Left = 288
+    Left = 304
     Top = 444
     Width = 119
     Height = 25
