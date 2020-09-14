@@ -72,3 +72,5 @@ dev.log
 ARMkaPROG.cfg
 raw_log.dat
 ARMkaPROG.cfg
+testpatterns/
+raw_log.dat
