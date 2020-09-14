@@ -3,6 +3,16 @@ F 150 150 150 i   Device name:
 F 150 200 150 Bi  ================= Disconnect =================
 F 200 150 150 Bi  ================== Connect ===================
 
+F 100 100 130     Ctrl_HEX:
+F 100 120 100     Ctrl_DEC:
+F 150 000 000 uB  Ctrl_Cmd:
+F 000 000 100 B   RD I2C:
+F 150 000 000 Bu  I2C WR:
+
+F 000 000 000 Bu  ----- DDR3
+
+END OF ARMKA TERMINAL SCRIPT
+
 F 170 170 170 I   mSec
 F 000 000 250 ui  USBSUSP
 F 250 000 000 ui  USBRST
@@ -42,10 +52,6 @@ B 255 255 000     USB_OTG_DIEPINT_EPDISD
 B 255 255 000     USB_OTG_DIEPINT_ITTXFE
 
 #B 000 200 000 --- USB_OTG_DIEPINT_XFRC
-
-
-END OF ARMKA TERMINAL SCRIPT
-
 
 
 
