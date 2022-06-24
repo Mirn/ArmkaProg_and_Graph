@@ -75,3 +75,4 @@ ARMkaPROG.cfg
 testpatterns/
 raw_log.dat
 *.dsm
+*.bak
