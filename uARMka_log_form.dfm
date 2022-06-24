@@ -45,8 +45,6 @@ object ARMka_log_form: TARMka_log_form
     Height = 17
     Anchors = [akLeft, akBottom]
     Caption = 'Smooth'
-    Checked = True
-    State = cbChecked
     TabOrder = 1
     OnClick = SmoothCheckBoxClick
   end

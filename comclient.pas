@@ -272,6 +272,10 @@ const
  stm32_PID_STM32F030x8           = $0440;
  stm32_PID_STM32F070xB           = $0448;
  stm32_PID_STM32F030xC           = $0442;
+ stm32_PID_STM32F303xBCor358     = $0422;
+ stm32_PID_STM32F303x68or328     = $0438;
+ stm32_PID_STM32F303xDEor398     = $0446;
+
 
 function stm32_save_file(file_name:string; data:pointer; data_size:cardinal) : boolean;
 var
@@ -865,20 +869,14 @@ begin
   log_add('Can''t load gate serial lib');
 
  error_code := CP210xRT_GetPartNumber(self.handle, @part_number);
- if error_code = CP210x_SUCCESS then
-  if part_number = 32 then
-   begin
-    Log_add('ERROR CP2102n make as CP2103!');
-    part_number := CP210x_CP2103_VERSION;
-   end;
 
  if error_code = CP210x_SUCCESS then
-  Log_add('CP210'+chr(ord('0')+part_number)+' chip detected')
+  Log_add('detected CP210n model code: '+inttostr(part_number))
  else
   Log_add('It''s not a CP210x chip');
 
  invert := 0;
- if (error_code = CP210x_SUCCESS) and (part_number = CP210x_CP2103_VERSION) or CP2114_mode then
+ if (error_code = CP210x_SUCCESS) and (part_number >= CP210x_CP2103_VERSION) or CP2114_mode then
   begin
 {   if (try_n and 3) = 0 then invert := $00;
    if (try_n and 3) = 1 then invert := $05;
@@ -900,9 +898,18 @@ begin
       end
      else
       begin
-       CP210xRT_WriteLatch(self.handle, $03, $00 xor invert); sleep(16);
-       CP210xRT_WriteLatch(self.handle, $03, $02 xor invert); sleep(16);
-       CP210xRT_WriteLatch(self.handle, $03, $00 xor invert); sleep(600);
+       if part_number = 33 then //for CP2102N-A02-GQFN24R
+        begin
+         CP210xRT_WriteLatch(self.handle, $03, $00 xor invert); sleep(16);
+         CP210xRT_WriteLatch(self.handle, $03, $01 xor invert); sleep(16);
+         CP210xRT_WriteLatch(self.handle, $03, $00 xor invert); sleep(600);
+        end
+       else
+        begin
+         CP210xRT_WriteLatch(self.handle, $03, $00 xor invert); sleep(16);
+         CP210xRT_WriteLatch(self.handle, $03, $02 xor invert); sleep(16);
+         CP210xRT_WriteLatch(self.handle, $03, $00 xor invert); sleep(600);
+        end;
       end;
     end
    else
@@ -916,10 +923,20 @@ begin
       end
      else
       begin
-       CP210xRT_WriteLatch(self.handle, $03, $00 xor invert); sleep(16);
-       CP210xRT_WriteLatch(self.handle, $03, $03 xor invert); sleep(16);
-       CP210xRT_WriteLatch(self.handle, $03, $01 xor invert); sleep(64);
-       CP210xRT_WriteLatch(self.handle, $03, $00 xor invert); sleep(128);
+       if part_number = 33 then  //for CP2102N-A02-GQFN24R
+        begin
+         CP210xRT_WriteLatch(self.handle, $03, $00 xor invert); sleep(16);
+         CP210xRT_WriteLatch(self.handle, $03, $03 xor invert); sleep(16);
+         CP210xRT_WriteLatch(self.handle, $03, $02 xor invert); sleep(64);
+         CP210xRT_WriteLatch(self.handle, $03, $00 xor invert); sleep(128);
+        end
+       else
+        begin
+         CP210xRT_WriteLatch(self.handle, $03, $00 xor invert); sleep(16);
+         CP210xRT_WriteLatch(self.handle, $03, $03 xor invert); sleep(16);
+         CP210xRT_WriteLatch(self.handle, $03, $01 xor invert); sleep(64);
+         CP210xRT_WriteLatch(self.handle, $03, $00 xor invert); sleep(128);
+        end;
       end;
     end;
    exit;
@@ -1010,12 +1027,21 @@ begin
      end
     else
      if CP210x_SUCCESS = CP210xRT_GetPartNumber(self.handle, @part_number) then
-      if (part_number = CP210x_CP2103_VERSION) or (part_number = 32) then
+      if (part_number >= CP210x_CP2103_VERSION) then
        begin
         log_add('Activate_armka: reset by gpio');
-        CP210xRT_WriteLatch(self.handle, $03, $00); sleep(64);
-        CP210xRT_WriteLatch(self.handle, $03, $02); sleep(64);
-        CP210xRT_WriteLatch(self.handle, $03, $00); sleep(64);
+        if part_number = 33 then  //for CP2102N-A02-GQFN24R
+         begin
+          CP210xRT_WriteLatch(self.handle, $03, $00); sleep(64);
+          CP210xRT_WriteLatch(self.handle, $03, $01); sleep(64);
+          CP210xRT_WriteLatch(self.handle, $03, $00); sleep(64);
+         end
+        else
+         begin
+          CP210xRT_WriteLatch(self.handle, $03, $00); sleep(64);
+          CP210xRT_WriteLatch(self.handle, $03, $02); sleep(64);
+          CP210xRT_WriteLatch(self.handle, $03, $00); sleep(64);
+         end;
         result := true;
         exit;
        end;
@@ -2302,7 +2328,9 @@ begin
   stm32_PID_STM32F030x8            : begin name := 'stm32_PID_STM32F030x8 devices'; stm32_PID_M0series := true; end;
   stm32_PID_STM32F070xB            : begin name := 'stm32_PID_STM32F070xB devices'; stm32_PID_M0series := true; end;
   stm32_PID_STM32F030xC            : begin name := 'stm32_PID_STM32F030xC devices'; stm32_PID_M0series := true; end;
-
+  stm32_PID_STM32F303xBCor358      : name := 'stm32_PID_STM32F303xBCor358';
+  stm32_PID_STM32F303x68or328      : name := 'stm32_PID_STM32F303x68or328';
+  stm32_PID_STM32F303xDEor398      : name := 'stm32_PID_STM32F303xDEor398';
  else
   name := 'UNKNOW';
  end;
@@ -2388,6 +2416,20 @@ begin
  ZeroMemory(@STM32_info, sizeof(STM32_info));
  ZeroMemory(@block[0], sizeof(block));
 
+ if (stm32_PID =  stm32_PID_STM32F303xBCor358) or
+    (stm32_PID =  stm32_PID_STM32F303x68or328) or
+    (stm32_PID =  stm32_PID_STM32F303xDEor398)
+ then
+  begin
+   Log_add('STM32F3xx series!');
+   result := boot_read($1FFFF7A0,  @block[0], math.Min(sizeof(block), $30));
+   if not result then
+    begin
+     move(block[$2C], STM32_info.flash_size, sizeof(STM32_info.flash_size));
+     move(block[$0C], STM32_info.cpu_id_a, 12);
+    end;
+  end
+ else
  if stm32_PID_M0series then
   begin
    Log_add('stm32_PID_M0series!');
