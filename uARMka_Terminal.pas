@@ -54,6 +54,8 @@ type
     DemoCheckBox: TCheckBox;
     FileOpenCheckBox: TCheckBox;
     t13incCheckBox: TCheckBox;
+    F11RadioButton: TRadioButton;
+    F12RadioButton: TRadioButton;
     procedure FormCreate(Sender: TObject);
     procedure SecondTimerTimer(Sender: TObject);
     procedure ms100TimerTimer(Sender: TObject);
@@ -504,7 +506,7 @@ begin
  if not macross_load then
   begin
    macros_list.Add(SendEdit.Text);
-   for k := 1 to 9 do
+   for k := 1 to (9+2) do
     macros_list.Add('void #'+inttostr(k+1));
   end
  else
@@ -765,6 +767,8 @@ begin
  if Sender = F8RadioButton then index := 7;
  if Sender = F9RadioButton then index := 8;
  if Sender = F10RadioButton then index := 9;
+ if Sender = F11RadioButton then index := 10;
+ if Sender = F12RadioButton then index := 11;
 
  if index < 0 then exit;
 
@@ -836,10 +840,10 @@ begin
   end;
 
  macros_list.Clear;
- for k:=0 to 9 do
+ for k:=0 to (9+2) do
   macros_list.Add('load error from key'+MACROSS_PATH+'\'+MACROSS_ITEM_NAME+inttostr(k));
 
- for k:=0 to 9 do
+ for k:=0 to (9+2) do
   if reg.ValueExists(MACROSS_ITEM_NAME+inttostr(k)) then
    begin
     macros_list.Strings[k] := reg.ReadString(MACROSS_ITEM_NAME + inttostr(k));
@@ -991,6 +995,8 @@ begin
  if key = vk_F8 then begin send_str(macros_list.Strings[7]); key := 0; end;
  if key = vk_F9 then begin send_str(macros_list.Strings[8]); key := 0; end;
  if key = vk_F10 then begin send_str(macros_list.Strings[9]); key := 0; end;
+ if key = vk_F11 then begin send_str(macros_list.Strings[10]); key := 0; end;
+ if key = vk_F12 then begin send_str(macros_list.Strings[11]); key := 0; end;
 end;
 
 procedure TARMka_Terminal.SendFileButtonClick(Sender: TObject);
@@ -1027,7 +1033,7 @@ var
  s : string;
 begin
  s:='=== Macroses ===';
- for k:=0 to min(9, macros_list.Count-1) do
+ for k:=0 to min(9+2, macros_list.Count-1) do
   s:=s+#13+'F'+inttostr(k+1)+' = '+macros_list.Strings[k];
 
  s := s + #13 + #13 +
@@ -1044,6 +1050,8 @@ begin
  F8RadioButton.Hint := s;
  F9RadioButton.Hint := s;
  F10RadioButton.Hint := s;
+ F11RadioButton.Hint := s;
+ F12RadioButton.Hint := s;
 end;
 
 

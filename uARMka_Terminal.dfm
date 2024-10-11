@@ -364,7 +364,7 @@ object ARMka_Terminal: TARMka_Terminal
     Anchors = [akLeft, akTop, akRight, akBottom]
   end
   object StatusRNGLabel: TLabel
-    Left = 496
+    Left = 576
     Top = 424
     Width = 27
     Height = 17
@@ -379,7 +379,7 @@ object ARMka_Terminal: TARMka_Terminal
     ParentFont = False
   end
   object StatusDCDLabel: TLabel
-    Left = 496
+    Left = 576
     Top = 440
     Width = 27
     Height = 17
@@ -394,7 +394,7 @@ object ARMka_Terminal: TARMka_Terminal
     ParentFont = False
   end
   object StatusCTSLabel: TLabel
-    Left = 536
+    Left = 616
     Top = 424
     Width = 27
     Height = 17
@@ -409,7 +409,7 @@ object ARMka_Terminal: TARMka_Terminal
     ParentFont = False
   end
   object StatusDSRLabel: TLabel
-    Left = 536
+    Left = 616
     Top = 440
     Width = 27
     Height = 17
@@ -799,7 +799,7 @@ object ARMka_Terminal: TARMka_Terminal
     OnClick = SmoothCheckBoxClick
   end
   object DTRCheckBox: TCheckBox
-    Left = 432
+    Left = 512
     Top = 424
     Width = 49
     Height = 17
@@ -818,7 +818,7 @@ object ARMka_Terminal: TARMka_Terminal
     OnClick = DTRCheckBoxClick
   end
   object RTSCheckBox: TCheckBox
-    Left = 432
+    Left = 512
     Top = 440
     Width = 49
     Height = 17
@@ -837,7 +837,7 @@ object ARMka_Terminal: TARMka_Terminal
     OnClick = DTRCheckBoxClick
   end
   object GraphButton: TButton
-    Left = 576
+    Left = 656
     Top = 428
     Width = 57
     Height = 25
@@ -855,8 +855,8 @@ object ARMka_Terminal: TARMka_Terminal
     OnClick = GraphButtonClick
   end
   object DemoCheckBox: TCheckBox
-    Left = 640
-    Top = 424
+    Left = 656
+    Top = 456
     Width = 65
     Height = 17
     Hint = 'Request to send'
@@ -910,6 +910,42 @@ object ARMka_Terminal: TARMka_Terminal
     ShowHint = True
     TabOrder = 24
     OnClick = t13incCheckBoxClick
+  end
+  object F11RadioButton: TRadioButton
+    Left = 416
+    Top = 422
+    Width = 49
+    Height = 17
+    Anchors = [akLeft, akBottom]
+    Caption = 'F11'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Courier New'
+    Font.Style = [fsBold]
+    ParentFont = False
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 25
+    OnClick = F10RadioButtonClick
+  end
+  object F12RadioButton: TRadioButton
+    Left = 464
+    Top = 422
+    Width = 45
+    Height = 17
+    Anchors = [akLeft, akBottom]
+    Caption = 'F12'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Courier New'
+    Font.Style = [fsBold]
+    ParentFont = False
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 26
+    OnClick = F10RadioButtonClick
   end
   object SecondTimer: TTimer
     OnTimer = SecondTimerTimer
