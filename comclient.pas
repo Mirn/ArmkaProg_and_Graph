@@ -865,7 +865,7 @@ var
  serlen : byte;
  serialnum: array[0..255] of char;
  serial:String;
- iscoinescrow: boolean;
+ isisoprog: boolean;
 begin
  part_number := $FF;
 
@@ -877,8 +877,8 @@ begin
  serlen := sizeof(serialnum)-1;
  CP210xRT_GetDeviceSerialNumber(self.handle, @serialnum, @serlen, true);
  serial := serialnum;
- iscoinescrow := Pos(UpperCase('CoinEscrowV3_'), UpperCase(serial)) = 1;
- Log_add('Check iscoinescrow (non swapped GPIO pins 0 and 1): ' + BoolToStr(iscoinescrow, true));
+ isisoprog := Pos(UpperCase('isoProg_v1_'), UpperCase(serial)) = 1;
+ Log_add('Check isoProg_v1_ (swapped GPIO pins 0 and 1): ' + BoolToStr(isisoprog, true));
 
  if error_code = CP210x_SUCCESS then
   Log_add('detected CP210n model code: '+inttostr(part_number))
@@ -908,7 +908,7 @@ begin
       end
      else
       begin
-       if (part_number = 33) and (not iscoinescrow) then //for CP2102N-A02-GQFN24R
+       if (isisoprog) then //for CP2102N-A02-GQFN24R
         begin
          CP210xRT_WriteLatch(self.handle, $03, $00 xor invert); sleep(16);
          CP210xRT_WriteLatch(self.handle, $03, $01 xor invert); sleep(16);
@@ -933,7 +933,7 @@ begin
       end
      else
       begin
-       if (part_number = 33) and (not iscoinescrow) then //for CP2102N-A02-GQFN24R
+       if (isisoprog) then //for CP2102N-A02-GQFN24R
         begin
          CP210xRT_WriteLatch(self.handle, $03, $00 xor invert); sleep(16);
          CP210xRT_WriteLatch(self.handle, $03, $03 xor invert); sleep(16);
@@ -996,7 +996,7 @@ var
  serlen : byte;
  serialnum: array[0..255] of char;
  serial:String;
- iscoinescrow: boolean;
+ isisoprog: boolean;
 begin
  result:=false;
  if stm32_find_disable_armka then exit;
@@ -1020,8 +1020,8 @@ begin
  serlen := sizeof(serialnum)-1;
  CP210xRT_GetDeviceSerialNumber(self.handle, @serialnum, @serlen, true);
  serial := serialnum;
- iscoinescrow := Pos(UpperCase('CoinEscrowV3_'), UpperCase(serial)) = 1;
- Log_add('Check iscoinescrow (non swapped GPIO pins 0 and 1): ' + BoolToStr(iscoinescrow, true));
+ isisoprog := Pos(UpperCase('isoProg_v1_'), UpperCase(serial)) = 1;
+ Log_add('Check isoProg_v1_ (swapped GPIO pins 0 and 1): ' + BoolToStr(isisoprog, true));
 
  k := GetTickCount;
  while GetTickCount-k<300 do
@@ -1051,7 +1051,7 @@ begin
       if (part_number >= CP210x_CP2103_VERSION) then
        begin
         log_add('Activate_armka: reset by gpio');
-        if (part_number = 33) and (not iscoinescrow) then //for CP2102N-A02-GQFN24R
+        if (isisoprog) then //for CP2102N-A02-GQFN24R
          begin
           CP210xRT_WriteLatch(self.handle, $03, $00); sleep(64);
           CP210xRT_WriteLatch(self.handle, $03, $01); sleep(64);
