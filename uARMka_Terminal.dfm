@@ -1,6 +1,6 @@
 object ARMka_Terminal: TARMka_Terminal
-  Left = 582
-  Top = 193
+  Left = 920
+  Top = 190
   AutoScroll = False
   Caption = 'ARMka_Terminal'
   ClientHeight = 490

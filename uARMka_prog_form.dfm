@@ -4,7 +4,7 @@ object ARMka_prog_form: TARMka_prog_form
   AutoScroll = False
   Caption = 'ARMkaProg'
   ClientHeight = 488
-  ClientWidth = 538
+  ClientWidth = 881
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -334,7 +334,7 @@ object ARMka_prog_form: TARMka_prog_form
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   DesignSize = (
-    538
+    881
     488)
   PixelsPerInch = 96
   TextHeight = 13
@@ -365,7 +365,7 @@ object ARMka_prog_form: TARMka_prog_form
     ParentFont = False
   end
   object Label1: TLabel
-    Left = 400
+    Left = 743
     Top = 8
     Width = 45
     Height = 17
@@ -405,7 +405,7 @@ object ARMka_prog_form: TARMka_prog_form
     ParentFont = False
   end
   object HistoryClearLabel: TLabel
-    Left = 456
+    Left = 799
     Top = 168
     Width = 45
     Height = 17
@@ -462,7 +462,7 @@ object ARMka_prog_form: TARMka_prog_form
     ParentFont = False
   end
   object InfoLabel: TLabel
-    Left = 424
+    Left = 767
     Top = 468
     Width = 108
     Height = 17
@@ -478,7 +478,7 @@ object ARMka_prog_form: TARMka_prog_form
     OnClick = InfoLabelClick
   end
   object DeviceLockedLabel: TLabel
-    Left = 330
+    Left = 673
     Top = 46
     Width = 36
     Height = 17
@@ -499,7 +499,7 @@ object ARMka_prog_form: TARMka_prog_form
   object ProgressBar: TProgressBar
     Left = 8
     Top = 440
-    Width = 475
+    Width = 818
     Height = 25
     Anchors = [akLeft, akTop, akRight]
     Enabled = False
@@ -511,7 +511,7 @@ object ARMka_prog_form: TARMka_prog_form
   object DeviceSelectComboBox: TComboBox
     Left = 8
     Top = 24
-    Width = 377
+    Width = 720
     Height = 24
     AutoComplete = False
     Anchors = [akLeft, akTop, akRight]
@@ -530,7 +530,7 @@ object ARMka_prog_form: TARMka_prog_form
     OnDropDown = DeviceSelectComboBoxDropDown
   end
   object LogButton: TButton
-    Left = 488
+    Left = 831
     Top = 440
     Width = 43
     Height = 25
@@ -540,7 +540,7 @@ object ARMka_prog_form: TARMka_prog_form
     OnClick = LogButtonClick
   end
   object SpeedComboBox: TComboBox
-    Left = 392
+    Left = 735
     Top = 24
     Width = 139
     Height = 25
@@ -593,7 +593,7 @@ object ARMka_prog_form: TARMka_prog_form
   object FilenameEdit: TEdit
     Left = 8
     Top = 136
-    Width = 483
+    Width = 826
     Height = 24
     Anchors = [akLeft, akTop, akRight]
     Font.Charset = DEFAULT_CHARSET
@@ -609,7 +609,7 @@ object ARMka_prog_form: TARMka_prog_form
     OnKeyPress = FilenameEditKeyPress
   end
   object OpenFileButton: TButton
-    Left = 496
+    Left = 839
     Top = 136
     Width = 33
     Height = 25
@@ -627,7 +627,7 @@ object ARMka_prog_form: TARMka_prog_form
     OnClick = OpenFileButtonClick
   end
   object SelectorARMkaRadioButton: TRadioButton
-    Left = 253
+    Left = 596
     Top = 118
     Width = 65
     Height = 17
@@ -644,7 +644,7 @@ object ARMka_prog_form: TARMka_prog_form
     TabStop = True
   end
   object SelectorATMRadioButton: TRadioButton
-    Left = 429
+    Left = 772
     Top = 118
     Width = 52
     Height = 17
@@ -659,7 +659,7 @@ object ARMka_prog_form: TARMka_prog_form
     TabOrder = 6
   end
   object SelectorGateRadioButton: TRadioButton
-    Left = 325
+    Left = 668
     Top = 118
     Width = 60
     Height = 17
@@ -693,7 +693,7 @@ object ARMka_prog_form: TARMka_prog_form
   object HistoryListBox: TListBox
     Left = 8
     Top = 188
-    Width = 523
+    Width = 866
     Height = 137
     Anchors = [akLeft, akTop, akRight]
     Font.Charset = DEFAULT_CHARSET
@@ -775,7 +775,7 @@ object ARMka_prog_form: TARMka_prog_form
     OnClick = VerifyButtonClick
   end
   object TestCheckBox: TCheckBox
-    Left = 482
+    Left = 825
     Top = 118
     Width = 47
     Height = 17
@@ -815,7 +815,7 @@ object ARMka_prog_form: TARMka_prog_form
     OnClick = ResetButtonClick
   end
   object TerminalButton: TButton
-    Left = 392
+    Left = 735
     Top = 56
     Width = 137
     Height = 25
@@ -833,7 +833,7 @@ object ARMka_prog_form: TARMka_prog_form
     OnClick = TerminalButtonClick
   end
   object AutoTermCheckBox: TCheckBox
-    Left = 392
+    Left = 735
     Top = 82
     Width = 137
     Height = 17
@@ -882,7 +882,7 @@ object ARMka_prog_form: TARMka_prog_form
     TabOrder = 22
   end
   object SettingsRadioGroup: TRadioGroup
-    Left = 328
+    Left = 671
     Top = 328
     Width = 201
     Height = 73
@@ -905,7 +905,7 @@ object ARMka_prog_form: TARMka_prog_form
     OnClick = SettingsRadioGroupClick
   end
   object SelectorSFURadioButton: TRadioButton
-    Left = 381
+    Left = 724
     Top = 118
     Width = 48
     Height = 17
