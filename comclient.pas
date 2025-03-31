@@ -2972,12 +2972,31 @@ end;
 function tcomclient.boot_write(addr:Cardinal; data:pointer; size:word):boolean;
 var
  error:boolean;
+ b:pbyte;
+ sz:word;
 begin
  result:=true;
 
  Log_add('=== Write command ===');
  Log_add('Addr = '+inttohex(addr,8));
  Log_add('Size = '+inttostr(size));
+
+ b := data;
+ sz := size;
+ while sz>0 do
+  begin
+   if b^ <> $FF then break;
+   inc(b);
+   dec(sz);
+  end;
+ if sz = 0 then
+  begin
+   Log_add('Nothing to write, passed');
+   Log_add(' ');
+   result:=false;
+   exit;
+  end;
+
 
  error:=com_io_data(cmd2str(boot_commands_list.Write), nil, 1, nil, 100);
  if error or (length(readed_buf)=0) or (readed_buf[0]<>tboot_ack) then
