@@ -919,6 +919,22 @@ object ARMka_prog_form: TARMka_prog_form
     ParentFont = False
     TabOrder = 23
   end
+  object NoVerifyCheckBox: TCheckBox
+    Left = 168
+    Top = 408
+    Width = 97
+    Height = 17
+    Caption = 'NoVerify'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Courier New'
+    Font.Style = [fsBold]
+    ParentFont = False
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 24
+  end
   object Timer32ms: TTimer
     Enabled = False
     Interval = 32

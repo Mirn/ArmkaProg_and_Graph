@@ -200,6 +200,7 @@ type
   stm32_task_enable : boolean;
   stm32_task_RDlock : boolean;
   stm32_task_UNlock : boolean;
+  stm32_task_NoVerify : boolean;
   stm32_task_stop : boolean;
 
   stm32_find_disable_atm    : boolean;
@@ -1387,7 +1388,8 @@ begin
     if (not stm32_erase_ignore) or (stm32_PID = stm32_PID_ultralow_power_line) then
     if boot_erase_all    then exit;
     if boot_write_flash  then exit;
-    if boot_verify_flash then exit;
+    if stm32_task_NoVerify <> true then
+     if boot_verify_flash then exit;
    end
   else
    begin

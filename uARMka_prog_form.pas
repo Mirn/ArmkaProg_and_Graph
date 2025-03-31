@@ -58,6 +58,7 @@ type
     RDLockCheckBox: TCheckBox;
     UnLockCheckBox: TCheckBox;
     SelectorSFURadioButton: TRadioButton;
+    NoVerifyCheckBox: TCheckBox;
     procedure DeviceSelectComboBoxDropDown(Sender: TObject);
     procedure Timer32msTimer(Sender: TObject);
     procedure LogButtonClick(Sender: TObject);
@@ -1991,6 +1992,7 @@ begin
  device.stm32_task_erase  := erase;
  device.stm32_task_write  := write;
  device.stm32_task_verify := verify;
+ device.stm32_task_NoVerify := NoVerifyCheckBox.Checked;
 
  device.stm32_find_disable_atm    := true;
  device.stm32_find_disable_armka  := true;
