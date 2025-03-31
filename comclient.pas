@@ -859,6 +859,7 @@ end;
 procedure tCOMClient.tiny_send(v:integer; msg:string; try_n:integer);
 var
  k:integer;
+ kk:cardinal;
  part_number : byte;
  error_code : integer;
  invert : byte;
@@ -968,8 +969,8 @@ begin
    tiny_tick;
   end;
 
- k := GetTickCount;
- while GetTickCount-k<300 do
+ kk := GetTickCount;
+ while GetTickCount-kk<300 do
   begin
    if check_stop then exit;
    sleep(1);
@@ -990,6 +991,7 @@ end;
 function tCOMClient.activate_armka:boolean;
 var
  k:integer;
+ kk:cardinal;
  flg : boolean;
  part_number : byte;
  t : cardinal;
@@ -1023,8 +1025,8 @@ begin
  isisoprog := Pos(UpperCase('isoProg_v1_'), UpperCase(serial)) = 1;
  Log_add('Check isoProg_v1_ (swapped GPIO pins 0 and 1): ' + BoolToStr(isisoprog, true));
 
- k := GetTickCount;
- while GetTickCount-k<300 do
+ kk := GetTickCount;
+ while GetTickCount-kk<300 do
   begin
    if check_stop then exit;
    sleep(1);
